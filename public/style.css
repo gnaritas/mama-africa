@@ -39,9 +39,19 @@ nav a.tel:hover{background:var(--jollof2);color:#fff}
 .hero{position:relative;background:
   radial-gradient(1200px 500px at 85% -10%,#fdf0d8 0%,var(--paper) 60%);
   padding:72px 0 64px;overflow:hidden}
-.hero .disc{position:absolute;right:-150px;top:-90px;width:560px;height:560px;border-radius:50%;
+.hero .disc{position:absolute;right:-280px;top:-90px;width:560px;height:560px;border-radius:50%;
   background:repeating-radial-gradient(circle,var(--paper2) 0 9px,#efe2c8 9px 18px);
   border:10px solid var(--gold);opacity:.85;pointer-events:none}
+/* disc must clear the hero text column at every viewport width: the centered
+   720px wrap grows its right edge as the window widens, so the ring's left edge
+   needs progressively more bleed as width shrinks. Tiered for the existing
+   breakpoints; each tier clears the text bbox by >=9.5px at its worst case
+   (desktop ladder assumes 15px scrollbar gutter; measured 2026-11-15). */
+@media(max-width:1239px){.hero .disc{right:-350px}}
+@media(max-width:1099px){.hero .disc{right:-420px}}
+@media(max-width:959px){.hero .disc{right:-485px}}
+@media(max-width:829px){.hero .disc{right:-535px}}
+@media(max-width:729px){.hero .disc{right:-570px}}
 .hero .disc::after{content:"";position:absolute;inset:38%;border-radius:50%;background:var(--jollof);
   box-shadow:0 0 0 10px #e8d8ba,0 0 0 26px var(--jollof2)}
 .hero .wrap{position:relative;z-index:2;max-width:720px}
@@ -107,7 +117,7 @@ details p{margin:0 0 16px;color:var(--ink2)}
 .cgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start}
 @media(max-width:820px){.cgrid{grid-template-columns:1fr}}
 .cform{display:grid;gap:14px}
-.cform label{font:700 13px/1.5 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
+.cform label{display:block;margin:0 0 5px;font:700 13px/1.5 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
 .cform input,.cform textarea{width:100%;font:16px/1.5 var(--sans);padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
 .cform textarea{min-height:130px;resize:vertical}
 .cform button{margin-top:6px}
