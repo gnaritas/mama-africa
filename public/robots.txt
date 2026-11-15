@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /thanks
 
-Sitemap: https://mama-africa-production.up.railway.app/sitemap.xml
+Sitemap: https://mama-africa-demo.up.railway.app/sitemap.xml
