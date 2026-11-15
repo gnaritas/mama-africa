@@ -39,7 +39,7 @@ nav a.tel:hover{background:var(--jollof2);color:#fff}
 .hero{position:relative;background:
   radial-gradient(1200px 500px at 85% -10%,#fdf0d8 0%,var(--paper) 60%);
   padding:72px 0 64px;overflow:hidden}
-.hero .disc{position:absolute;right:-280px;top:-90px;width:560px;height:560px;border-radius:50%;
+.hero .disc{position:absolute;right:-290px;top:-90px;width:560px;height:560px;border-radius:50%;
   background:repeating-radial-gradient(circle,var(--paper2) 0 9px,#efe2c8 9px 18px);
   border:10px solid var(--gold);opacity:.85;pointer-events:none}
 /* disc must clear the hero text column at every viewport width: the centered
@@ -47,11 +47,11 @@ nav a.tel:hover{background:var(--jollof2);color:#fff}
    needs progressively more bleed as width shrinks. Tiered for the existing
    breakpoints; each tier clears the text bbox by >=9.5px at its worst case
    (desktop ladder assumes 15px scrollbar gutter; measured 2026-11-15). */
-@media(max-width:1239px){.hero .disc{right:-350px}}
-@media(max-width:1099px){.hero .disc{right:-420px}}
-@media(max-width:959px){.hero .disc{right:-485px}}
-@media(max-width:829px){.hero .disc{right:-535px}}
-@media(max-width:729px){.hero .disc{right:-570px}}
+@media(max-width:1239px){.hero .disc{right:-360px}}
+@media(max-width:1099px){.hero .disc{right:-430px}}
+@media(max-width:959px){.hero .disc{right:-495px}}
+@media(max-width:829px){.hero .disc{right:-545px}}
+@media(max-width:729px){.hero .disc{right:-580px}}
 .hero .disc::after{content:"";position:absolute;inset:38%;border-radius:50%;background:var(--jollof);
   box-shadow:0 0 0 10px #e8d8ba,0 0 0 26px var(--jollof2)}
 .hero .wrap{position:relative;z-index:2;max-width:720px}
