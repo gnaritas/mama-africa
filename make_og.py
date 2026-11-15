@@ -44,41 +44,47 @@ chevron_band(0, 26, 255)
 chevron_band(H - 52, 26, 255)
 
 # overhead jollof bowl on the right: cream bowl, jollof disc, rice-grain dashes
-cx, cy, R = 905, 320, 235
-d.ellipse((cx - R - 26, cy - R - 26, cx + R + 26, cy + R + 26), fill=INK + (30,))          # soft shadow
-d.ellipse((cx - R - 18, cy - R - 18, cx + R + 18, cy + R + 18), fill=PAPER2)                # bowl rim
-d.ellipse((cx - R - 18, cy - R - 18, cx + R + 18, cy + R + 18), outline=INK, width=5)
-d.ellipse((cx - R + 18, cy - R + 18, cx + R - 18, cy + R - 18), fill=JOLLOF)                # jollof
-d.ellipse((cx - R + 40, cy - R + 42, cx + R - 40, cy + R - 42), fill=JOLLOF2)               # lighter center
-# rice grains as short cream dashes
-for _ in range(300):
-    a = random.uniform(0, 6.283); r = random.uniform(0, R - 55)
-    x, y = cx + r * 0.97 * __import__("math").cos(a), cy + r * 0.9 * __import__("math").sin(a)
+import math
+cx, cy, R = 958, 330, 195
+d.ellipse((cx - R - 24, cy - R - 24, cx + R + 24, cy + R + 24), fill=INK + (30,))          # soft shadow
+d.ellipse((cx - R - 16, cy - R - 16, cx + R + 16, cy + R + 16), fill=PAPER2)                # bowl rim
+d.ellipse((cx - R - 16, cy - R - 16, cx + R + 16, cy + R + 16), outline=INK, width=5)
+d.ellipse((cx - R + 16, cy - R + 16, cx + R - 16, cy + R - 16), fill=JOLLOF)                # jollof
+d.ellipse((cx - R + 42, cy - R + 44, cx + R - 42, cy + R - 44), fill=JOLLOF2)               # lighter center
+# rice grains as short cream dashes — area-uniform annulus sampling keeps the center clean
+for _ in range(240):
+    a = random.uniform(0, 6.283)
+    r = (R - 48) * math.sqrt(random.uniform(0.18, 1.0)) + 12
+    x, y = cx + r * 0.94 * math.cos(a), cy + r * 0.87 * math.sin(a)
     a2 = random.uniform(0, 3.14)
-    dx, dy = 6 * __import__("math").cos(a2), 6 * __import__("math").sin(a2)
+    dx, dy = 5 * math.cos(a2), 5 * math.sin(a2)
     d.line([(x - dx, y - dy), (x + dx, y + dy)], fill=(252, 246, 230, 210), width=2)
 # plantain slices: gold arcs on the rice
-for (px, py) in [(cx - 90, cy - 60), (cx + 70, cy - 20), (cx - 20, cy + 85), (cx + 95, cy + 60), (cx - 105, cy + 30)]:
-    d.ellipse((px - 26, py - 16, px + 26, py + 16), fill=GOLD, outline=(150, 110, 30), width=3)
+for (px, py) in [(cx - 78, cy - 48), (cx + 62, cy - 12), (cx - 14, cy + 70), (cx + 82, cy + 52), (cx - 92, cy + 24)]:
+    d.ellipse((px - 24, py - 15, px + 24, py + 15), fill=GOLD, outline=(150, 110, 30), width=3)
 # green flecks (peppers/onions)
-for _ in range(34):
-    a = random.uniform(0, 6.283); r = random.uniform(20, R - 60)
-    x, y = cx + r * 0.95 * __import__("math").cos(a), cy + r * 0.88 * __import__("math").sin(a)
+for _ in range(30):
+    a = random.uniform(0, 6.283)
+    r = (R - 55) * math.sqrt(random.uniform(0.25, 1.0)) + 14
+    x, y = cx + r * 0.93 * math.cos(a), cy + r * 0.86 * math.sin(a)
     d.ellipse((x - 4, y - 3, x + 4, y + 3), fill=PALM)
 
 f_eye = font(["Arial Bold.ttf", "Helvetica.ttc"], 22)
-f_title = font(["Georgia Bold.ttf", "Georgia Italic.ttf", "Georgia.ttf"], 118)
+f_title = font(["Georgia Bold.ttf", "Georgia Italic.ttf", "Georgia.ttf"], 96)
 f_sub = font(["Georgia Italic.ttf", "Georgia.ttf"], 29)
 f_nap = font(["Helvetica.ttc", "Arial.ttf"], 19)
 
+TITLE = "Mama Africa"
+twd = d.textlength(TITLE, font=f_title)
+assert twd < 700, f"title width {twd} would collide with the bowl"
 d.text((70, 66), "LOCAL BITES · 700 LOCUST ST · DOWNTOWN DES MOINES", font=f_eye, fill=INK)
-d.text((66, 128), "Mama Africa", font=f_title, fill=INK)
-d.line([(70, 268), (520, 268)], fill=JOLLOF, width=6)
-d.text((70, 292), "Liberian & West African kitchen", font=f_sub, fill=JOLLOF)
-d.text((70, 336), "Jollof bowls built to order at lunch.", font=f_sub, fill=INK)
-d.text((70, 374), "Egusi, fufu and greens at dinner.", font=f_sub, fill=INK)
-d.text((70, 440), "Catering for parties, weddings and events", font=f_nap, fill=(90, 72, 52))
-d.text((70, 468), "(515) 735-1141 · Des Moines, IA 50309", font=f_nap, fill=(90, 72, 52))
+d.text((66, 132), TITLE, font=f_title, fill=INK)
+d.line([(70, 252), (70 + twd, 252)], fill=JOLLOF, width=6)
+d.text((70, 278), "Liberian & West African kitchen", font=f_sub, fill=JOLLOF)
+d.text((70, 322), "Jollof bowls built to order at lunch.", font=f_sub, fill=INK)
+d.text((70, 360), "Egusi, fufu and greens at dinner.", font=f_sub, fill=INK)
+d.text((70, 436), "Catering for parties, weddings and events", font=f_nap, fill=(90, 72, 52))
+d.text((70, 464), "(515) 735-1141 · Des Moines, IA 50309", font=f_nap, fill=(90, 72, 52))
 
 img.save(OUT, "PNG", optimize=True)
 print("wrote", OUT, os.path.getsize(OUT), "bytes")
