@@ -1,0 +1,8 @@
+{
+  "name": "mama-africa",
+  "version": "1.0.0",
+  "description": "Mama Africa Food & Catering — Liberian & West African restaurant at Local Bites, Des Moines IA (static site + node form relay)",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
